@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "classnotes.java/src",
+        "TriangleCalculator.java/src",
+        "Project1.java/src",
+        "BertucciAddSubtract.java/src"
+    ]
+}
