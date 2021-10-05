@@ -12,8 +12,12 @@ public class App extends JFrame{
     private String numberInput;
 
     //display method
-    public static void displayTokens(String[] i) {
-        System.out.println("The contents of the array are: " + (Arrays.toString(i)));
+    public static void displayTokens(String[] i, int length) {
+        System.out.print("The contents of the array are: ");
+        for (int e = 0; e < length; e++) {
+            System.out.print(i[e] + " ");
+        }
+
     }
 
     public static void main(String[] args) {
@@ -58,7 +62,7 @@ public class App extends JFrame{
             }
 
             //print contents of token array
-            displayTokens(nums);
+            displayTokens(nums,numTok);
         }
     }
 }
