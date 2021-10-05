@@ -5,27 +5,31 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class App extends JFrame{
-    //create content field and JTextField
-    //create global string
+    //create global variables and widgets to use
     private Container c = getContentPane();
     private TextField numberField;
     private TextField outputField;
+    private JButton clearButton;
     private String numberInput;
 
     //display method
-    public static String displayTokens(String[] i, int length) {
+    public static String displayTokens(int[] i, int length) {
         //create a string buffer to allow creation of single output string
         StringBuffer outputBuffer = new StringBuffer("The contents of the array are: ");
 
         //loop to add all contents of token array to stringbuffer
         for (int e = 0; e < length; e++) {
-            outputBuffer.append(i[e] + " "); 
+            outputBuffer.append(String.valueOf(i[e]) + " ");
         }
 
         //set string buffer equal to single string and return that single string value
         String output = String.valueOf(outputBuffer);
         return output;
     }
+
+
+
+    //________________________________________________________________________________
 
     public static void main(String[] args) {
         //create and show container
@@ -54,10 +58,16 @@ public class App extends JFrame{
         outputField.setEditable(false);
         outputField.addActionListener(eventHandler);
 
+        //add clear button to container 
+        clearButton = new JButton("Clear");
+        c.add(clearButton);
+        clearButton.addActionListener(eventHandler);
+
     }
 
     private class Handler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
+            //input textfield logic
             //get input from textfield and store in string
             numberInput = numberField.getText();
 
@@ -68,15 +78,24 @@ public class App extends JFrame{
             int i = 0;
             int numTok = toks.countTokens();
             String tokens = "";
-            String []nums = new String[numTok];
+            int[] nums = new int[numTok];
             while (toks.hasMoreTokens()) {
                 tokens = toks.nextToken();
-                nums[i] = (tokens);
+                nums[i] = (Integer.parseInt(tokens));
                 i++;
             }
 
+            //output textfield display logic
             //print contents of token array in the label for the output
             outputField.setText(displayTokens(nums,numTok));
+
+            //clear button logic
+            if(event.getSource() == clearButton) {
+                //clear input field
+                numberField.setText("");
+                //clear output field
+                outputField.setText("");
+            }
             
         }
     }
