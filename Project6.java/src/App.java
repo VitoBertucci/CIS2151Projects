@@ -9,15 +9,22 @@ public class App extends JFrame{
     //create global string
     private Container c = getContentPane();
     private TextField numberField;
+    private TextField outputField;
     private String numberInput;
 
     //display method
-    public static void displayTokens(String[] i, int length) {
-        System.out.print("The contents of the array are: ");
+    public static String displayTokens(String[] i, int length) {
+        //create a string buffer to allow creation of single output string
+        StringBuffer outputBuffer = new StringBuffer("The contents of the array are: ");
+
+        //loop to add all contents of token array to stringbuffer
         for (int e = 0; e < length; e++) {
-            System.out.print(i[e] + " ");
+            outputBuffer.append(i[e] + " "); 
         }
 
+        //set string buffer equal to single string and return that single string value
+        String output = String.valueOf(outputBuffer);
+        return output;
     }
 
     public static void main(String[] args) {
@@ -35,10 +42,17 @@ public class App extends JFrame{
         setTitle("Project 6: Strings and Exceptions");
         c.setLayout(new FlowLayout());
 
-        //put textfield in layout
+        //put textfields in layout
         numberField = new TextField(30);
         c.add(numberField);
         numberField.addActionListener(eventHandler);
+
+        //add output textfield to container and set its text and edit boolean
+        outputField = new TextField(50);
+        c.add(outputField);
+        outputField.setText("Output of array will appear here");
+        outputField.setEditable(false);
+        outputField.addActionListener(eventHandler);
 
     }
 
@@ -61,8 +75,9 @@ public class App extends JFrame{
                 i++;
             }
 
-            //print contents of token array
-            displayTokens(nums,numTok);
+            //print contents of token array in the label for the output
+            outputField.setText(displayTokens(nums,numTok));
+            
         }
     }
 }
