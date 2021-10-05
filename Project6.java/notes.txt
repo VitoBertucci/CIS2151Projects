@@ -1,9 +1,71 @@
 Part 2 Notes:
-2.5: After inputting the given input, the display for the array showed the correct array
+
+Try/Catch block for 2.5 and 2.6:
+int[] nums = new int[5];
+            while (toks.hasMoreTokens()) {
+                try {
+                    tokens = Integer.parseInt(toks.nextToken());
+                    nums[i] = (tokens);
+                } catch(ArrayIndexOutOfBoundsException aioob) {
+                    exprField.setText(aioob.toString());
+                } catch (NumberFormatException nfe) {
+                    exprField.setText(nfe.toString());
+                }
+                i++;
+            } 
+
+2.5: 
+     Display output: The contents of the array are: 1 2 3 4 5 
+     Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 5
+
+     After inputting the given input, the display for the array showed the correct array
      for the first 5 numbers entered (1 2 3 4 5). In the exception field, the exception 
-     message for the ArrayIndexOutOfBounds showed. This is evidence that the while loop 
-     ran correctly for the first 5 tokens, which it had the dedicated room for, but after 
-     the first 5, the try catch block found an exception (ArrayIndexOutOfBounds), stopped
-     running the block, and displayed that message. Although there was a double that was
+     message for the ArrayIndexOutOfBounds showed. The try/catch block ran through all values 
+     (since it is inside the while loop), stopped once all values were tried, and outputted the 
+     first exception that the catch block caught. Although there was a double that was
      entered, the first exception that was caught was the one that stopped the loop and
-     displayed the message. 
+     displayed the message. Importantly, the exception message states that index 8 was out 
+     of bounds, which means the try catch block was ran for all values of the input.
+
+2.6:
+     Display output: The contents of the array are: 1 2 3 4 5 
+     Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 13 out of bounds for length 5
+
+     This is similar to the last test, but this time the input does not include a double.
+     The same exception message is given, but this time with index 13 being out of bounds
+     for the array. Importantly, the exception message states that index 13 was out 
+     of bounds, which means the try catch block was ran for all values of the input.
+_________________________________________________________________________________________________________
+
+Try/Catch block for 2.8 and 2.9:
+int[] nums = new int[5];
+            try {
+                while (toks.hasMoreTokens()) {
+                    tokens = Integer.parseInt(toks.nextToken());
+                    nums[i] = (tokens);
+                    i++;
+                }   
+            } catch(ArrayIndexOutOfBoundsException aioob) {
+                    exprField.setText(aioob.toString());
+            } catch (NumberFormatException nfe) {
+                    exprField.setText(nfe.toString());
+            }
+
+2.8:
+     Display output: The contents of the array are: 1 2 3 4 5 
+     Exception output: java.lang.NumberFormatException: For input string: "6A"
+
+     After trying this input, the display output was correct again for the first 5 values that
+     were entered (1 2 3 4 5), but this time the exception message for the NumberFormatException
+     was outputted instead of the ArrayIndexOutOfBoundsException like the last one. This is
+     because the entire while loop was put inside of the the try block so the entire loop is tried
+     and checked every iteration, instead of one value at a time.
+
+2.9:
+     Display output: The contents of the array are: 1 2 3 4 5 
+     Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
+
+     This is similar to the 2.6 test, but this time the exception message changed. Most importantly,
+     the exception message states that index 5 is out of bounds for the array, not index 13, which is
+     what the last value's index would be. This is because the while loop is tried and checked each 
+     iteration, like the 2.8 test.

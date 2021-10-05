@@ -89,24 +89,20 @@ public class App extends JFrame{
 
             //create int array with size and fill it with while loop
             int[] nums = new int[5];
-            while (toks.hasMoreTokens()) {
-                
-                /**
-                 * try catch block to try to change token from string value 
-                 * to int value, then store that value in array. Catches try to
-                 * catch array index OOB exception for array size, and NFE 
-                 * exception for incorrect token to int formats
-                 */
-                try {
+            try {
+                while (toks.hasMoreTokens()) {
                     tokens = Integer.parseInt(toks.nextToken());
                     nums[i] = (tokens);
-                } catch(ArrayIndexOutOfBoundsException aioob) {
+                    i++;
+                }   
+            } catch(ArrayIndexOutOfBoundsException aioob) {
                     exprField.setText(aioob.toString());
-                } catch (NumberFormatException nfe) {
+            } catch (NumberFormatException nfe) {
                     exprField.setText(nfe.toString());
-                }
-                i++;
             }
+            
+            
+                
 
             //output textfield display logic
             //print contents of token array in the label for the output
