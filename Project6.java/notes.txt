@@ -1,0 +1,9 @@
+Part 2 Notes:
+2.5: After inputting the given input, the display for the array showed the correct array
+     for the first 5 numbers entered (1 2 3 4 5). In the exception field, the exception 
+     message for the ArrayIndexOutOfBounds showed. This is evidence that the while loop 
+     ran correctly for the first 5 tokens, which it had the dedicated room for, but after 
+     the first 5, the try catch block found an exception (ArrayIndexOutOfBounds), stopped
+     running the block, and displayed that message. Although there was a double that was
+     entered, the first exception that was caught was the one that stopped the loop and
+     displayed the message. 
