@@ -69,3 +69,39 @@ int[] nums = new int[5];
      the exception message states that index 5 is out of bounds for the array, not index 13, which is
      what the last value's index would be. This is because the while loop is tried and checked each 
      iteration, like the 2.8 test.
+_________________________________________________________________________________________________________
+
+Code for 2.12:
+    public void evaluateInput(int[] ary, String s, int index) {
+        int tokInputted;
+        tokInputted = Integer.parseInt(s);
+        ary[index] = (tokInputted);
+    }
+
+    StringTokenizer toks = new StringTokenizer (numberInput, (", "));
+            int i = 0;
+            String stringTokens = "";
+            int intTokens;
+            int[] nums = new int[5];
+            while (toks.hasMoreTokens()) {
+                stringTokens = toks.nextToken();
+                try {
+                    evaluateInput(nums, stringTokens, i);
+                } catch(ArrayIndexOutOfBoundsException aioob) {
+                    exprField.setText(aioob.toString());
+                } catch (NumberFormatException nfe) {
+                    exprField.setText(nfe.toString());
+                }
+                i++;
+            }
+
+     2.12:
+     Display output: The contents of the array are: 1 2 3 4 5 
+     Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 5
+
+     This input, when tested, reacted the exact same way as the 2.5 test. The try/catch block was
+     used inside of the while loop, so each value was tried and tested, therefore, the exception
+     was thrown on the 5 iteration of the while loop, after the array had used all of its space,
+     and it was caught after the while loop had completed, 8 iterations later. This caused the 
+     exception message to state that index 8 was out of bounds instead of index 5, when the while 
+     loop started going out of bounds.

@@ -28,6 +28,13 @@ public class App extends JFrame{
         return output;
     }
 
+    //evaluateInput method that converts the token to an int and stores it in the array
+    public void evaluateInput(int[] ary, String s, int index) {
+        int tokInputted;
+        tokInputted = Integer.parseInt(s);
+        ary[index] = (tokInputted);
+    }
+
 
 
     //________________________________________________________________________________
@@ -85,24 +92,22 @@ public class App extends JFrame{
 
             //while loop to store all tokens in an array
             int i = 0;
-            int tokens;
+            String stringTokens = "";
+            int intTokens;
 
             //create int array with size and fill it with while loop
             int[] nums = new int[5];
-            try {
-                while (toks.hasMoreTokens()) {
-                    tokens = Integer.parseInt(toks.nextToken());
-                    nums[i] = (tokens);
-                    i++;
-                }   
-            } catch(ArrayIndexOutOfBoundsException aioob) {
+            while (toks.hasMoreTokens()) {
+                stringTokens = toks.nextToken();
+                try {
+                    evaluateInput(nums, stringTokens, i);
+                } catch(ArrayIndexOutOfBoundsException aioob) {
                     exprField.setText(aioob.toString());
-            } catch (NumberFormatException nfe) {
+                } catch (NumberFormatException nfe) {
                     exprField.setText(nfe.toString());
-            }
-            
-            
-                
+                }
+                i++;
+            }   
 
             //output textfield display logic
             //print contents of token array in the label for the output
