@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
+import java.lang.String;
 
 public class App extends JFrame{
     //create global variables and widgets to use
@@ -29,13 +30,14 @@ public class App extends JFrame{
     }
 
     //evaluateInput method that converts the token to an int and stores it in the array
-    public void evaluateInput(int[] ary, String s, int index) {
+    public void evaluateInput(int[] ary, String s, int index) throws InvalidDecimalException {
         int tokInputted;
+        if(s.indexOf(".") != -1) {
+            throw new InvalidDecimalException("no decimals allowed");
+        }
         tokInputted = Integer.parseInt(s);
         ary[index] = (tokInputted);
     }
-
-
 
     //________________________________________________________________________________
 
@@ -92,21 +94,22 @@ public class App extends JFrame{
 
             //while loop to store all tokens in an array
             int i = 0;
-            String stringTokens = "";
-            int intTokens;
+            String token = "";
 
             //create int array with size and fill it with while loop
             int[] nums = new int[5];
             while (toks.hasMoreTokens()) {
-                stringTokens = toks.nextToken();
+                token = toks.nextToken();
                 try {
-                    evaluateInput(nums, stringTokens, i);
+                    evaluateInput(nums, token, i);
                 } catch(ArrayIndexOutOfBoundsException aioob) {
                     exprField.setText(aioob.toString());
+                } catch(InvalidDecimalException ide) {
+                    exprField.setText(ide.toString());
                 } catch (NumberFormatException nfe) {
                     exprField.setText(nfe.toString());
                 }
-                i++;
+                i++; 
             }   
 
             //output textfield display logic
@@ -122,6 +125,13 @@ public class App extends JFrame{
                 //clear exception field
                 exprField.setText("Exception messages will appear here");
             }
+        }
+    }
+
+    //class for InvalidDecimalException
+    class InvalidDecimalException extends Exception {
+        public InvalidDecimalException(String message) {
+            super(message);
         }
     }
 }

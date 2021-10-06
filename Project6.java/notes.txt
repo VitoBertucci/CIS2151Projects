@@ -1,6 +1,7 @@
-Part 2 Notes:
+Project 6 Notes:
 
-Try/Catch block for 2.5 and 2.6:
+_________________________________________________________________________________________________________
+Code for 5 and 6:
 int[] nums = new int[5];
             while (toks.hasMoreTokens()) {
                 try {
@@ -14,7 +15,7 @@ int[] nums = new int[5];
                 i++;
             } 
 
-2.5: 
+     5: 
      Display output: The contents of the array are: 1 2 3 4 5 
      Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 5
 
@@ -27,7 +28,7 @@ int[] nums = new int[5];
      displayed the message. Importantly, the exception message states that index 8 was out 
      of bounds, which means the try catch block was ran for all values of the input.
 
-2.6:
+     6:
      Display output: The contents of the array are: 1 2 3 4 5 
      Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 13 out of bounds for length 5
 
@@ -35,9 +36,14 @@ int[] nums = new int[5];
      The same exception message is given, but this time with index 13 being out of bounds
      for the array. Importantly, the exception message states that index 13 was out 
      of bounds, which means the try catch block was ran for all values of the input.
+
+     Summation:
+     Since the try/catch block is inside the while loop, the block will try each iteration
+     of the loop until it is done, and the exception will not be caught/displayed until
+     the end of the while loop.
 _________________________________________________________________________________________________________
 
-Try/Catch block for 2.8 and 2.9:
+Code for 8 and 9:
 int[] nums = new int[5];
             try {
                 while (toks.hasMoreTokens()) {
@@ -51,27 +57,32 @@ int[] nums = new int[5];
                     exprField.setText(nfe.toString());
             }
 
-2.8:
+     8:
      Display output: The contents of the array are: 1 2 3 4 5 
      Exception output: java.lang.NumberFormatException: For input string: "6A"
 
      After trying this input, the display output was correct again for the first 5 values that
-     were entered (1 2 3 4 5), but this time the exception message for the NumberFormatException
-     was outputted instead of the ArrayIndexOutOfBoundsException like the last one. This is
-     because the entire while loop was put inside of the the try block so the entire loop is tried
+     were entered (1 2 3 4 5) similarly to test 5, but this time the exception message for the 
+     NumberFormatException was outputted instead of the ArrayIndexOutOfBoundsException like the last one. 
+     This is because the entire while loop was put inside of the the try block so the entire loop is tried
      and checked every iteration, instead of one value at a time.
 
-2.9:
+     9:
      Display output: The contents of the array are: 1 2 3 4 5 
      Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 5 out of bounds for length 5
 
-     This is similar to the 2.6 test, but this time the exception message changed. Most importantly,
+     This is similar to the 6 test, but this time the exception message changed. Most importantly,
      the exception message states that index 5 is out of bounds for the array, not index 13, which is
      what the last value's index would be. This is because the while loop is tried and checked each 
      iteration, like the 2.8 test.
+
+     Summation:
+     Since the try/catch block tests the entire while loop each iteration, if an exception is 
+     thrown during an iteration before the final iteration, it will be caught/displayed on
+     THAT iteration and the loop will break.
 _________________________________________________________________________________________________________
 
-Code for 2.12:
+Code for 12:
     public void evaluateInput(int[] ary, String s, int index) {
         int tokInputted;
         tokInputted = Integer.parseInt(s);
@@ -95,13 +106,54 @@ Code for 2.12:
                 i++;
             }
 
-     2.12:
+     12:
      Display output: The contents of the array are: 1 2 3 4 5 
      Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 5
 
-     This input, when tested, reacted the exact same way as the 2.5 test. The try/catch block was
+     This input, when tested, reacted the exact same way as the 5 test. The try/catch block was
      used inside of the while loop, so each value was tried and tested, therefore, the exception
      was thrown on the 5 iteration of the while loop, after the array had used all of its space,
      and it was caught after the while loop had completed, 8 iterations later. This caused the 
      exception message to state that index 8 was out of bounds instead of index 5, when the while 
      loop started going out of bounds.
+
+     Summation: This is the same test as the 5 test, but with the evaluateInput being used
+     _________________________________________________________________________________________________________
+
+Code for 14:
+public void evaluateInput(int[] ary, String s, int index) throws InvalidDecimalException {
+    int tokInputted;
+    if(s.indexOf(".") != -1) {
+        throw new InvalidDecimalException("no decimals allowed");
+    }
+    tokInputted = Integer.parseInt(s);
+    ary[index] = (tokInputted);
+}
+
+class InvalidDecimalException extends Exception {
+    public InvalidDecimalException(String message) {
+        super(message);
+    }
+}
+
+     14:
+     Display output: The contents of the array are: 1 2 3 4 5 
+     Exception output: java.lang.ArrayIndexOutOfBoundsException: Index 8 out of bounds for length 5
+     
+     Similar to the previous tests, the display is correct with the first 5 values, and the 
+     exception message is an ArrayIndexOutOfBoundsException at index 8 because the try block is 
+     inside of the while loop, which runs for the determined amount of iterations in its parameter.
+     The exception was thrown in the 5 iteration of the while loop once the evaluateInput method
+     tried to put a value in index 5 of an array that goes up to index 4. The exception was caught
+     on the last iteration (iteration 8) of the while loop, which allows the exception message to 
+     be outputted. Even though the new exception of InvalidDecimalException was thrown due to the 6.6 
+     in the input, the first exception to be caught is the ArrayIndexOutOfBoundsException, due to it 
+     running before the InvalidDecimalException catch and breaking out of the try/catch block.
+
+     Summation:
+     Since the try/catch block is inside of the while loop, any exception will not be 
+     caught/displayed until the while loop is done iterating. Even though the input will
+     throw the new decimal exception, the indexOutOfBounds exception is caught first since it
+     is the first to be tested with the exception thrown.
+
+
