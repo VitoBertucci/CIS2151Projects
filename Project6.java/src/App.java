@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 import java.lang.String;
 
@@ -39,17 +38,7 @@ public class App extends JFrame{
         ary[index] = (tokInputted);
     }
 
-    //________________________________________________________________________________
-
-    public static void main(String[] args) {
-        //create and show container
-        App frame = new App();
-        frame.setSize(600,300);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-    }
-
+    //constructor
     public App() { 
         Handler eventHandler = new Handler();
         //set title and layout
@@ -80,6 +69,16 @@ public class App extends JFrame{
         c.add(clearButton);
         clearButton.addActionListener(eventHandler);
 
+    }
+
+    //main method
+    public static void main(String[] args) {
+        //create and show container
+        App frame = new App();
+        frame.setSize(600,300);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
     }
 
     //event handler
