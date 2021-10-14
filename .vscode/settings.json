@@ -1,7 +1,8 @@
 {
     "java.project.sourcePaths": [
+        "Project6.java/src",
         "Project1.java/src",
         "BertucciAddSubtract.java/src",
-        "Project6.java/src"
+        "MidtermReview/src"
     ]
 }
