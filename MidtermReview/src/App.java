@@ -16,7 +16,6 @@ public class App {
         // STRING EXAM REVIEW QUESTIONS:
         // create and set a string to a variable
 
-        /*
         String var = "some string";
 
         String userInput = "";
@@ -74,8 +73,9 @@ public class App {
 
         String lowerCase = example1.toLowerCase();
         System.out.print(lowerCase);    //java 
-        */
 
+        //get text from textfield using:
+        //textField.getText(); 
         //---------------------------------------------------
     }
 }
